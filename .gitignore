@@ -1,5 +1,6 @@
 .env
 package-lock.json
+package-lock 2.json
 
 # Created by https://www.gitignore.io/api/node,osx,linux
 

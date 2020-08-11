@@ -2,10 +2,13 @@ let express = require('express')
 let db = require('../models')
 let router = express.Router()
 
+// AUTHORS BUTTON
 // GET /authors - display all authors
 router.get('/', (req, res) => {
+  // look at the table called author: firstName, lastName, bio
   db.author.findAll()
   .then((authors) => {
+    //will return all of them on /authors page
     res.render('authors/index', { authors: authors })
   })
   .catch((error) => {
@@ -34,6 +37,7 @@ router.get('/new', (req, res) => {
 })
 
 // GET /authors/:id - display a specific author and their posts
+// /authors/1
 router.get('/:id', (req, res) => {
   db.author.findOne({
     include: [db.article],

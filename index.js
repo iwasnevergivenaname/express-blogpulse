@@ -5,6 +5,8 @@ let moment = require('moment')
 let rowdy = require('rowdy-logger')
 let app = express()
 
+const PORT = 4200;
+
 rowdy.begin(app)
 
 app.set('view engine', 'ejs')
@@ -15,11 +17,13 @@ app.use(ejsLayouts)
 app.use(express.static(__dirname + '/public/'))
 
 // middleware that allows us to access the 'moment' library in every EJS view
+// NOTICE THIS USE OF NEXT()
 app.use((req, res, next) => {
   res.locals.moment = moment
   next()
 })
 
+// TO BLOGPULSE AKA MAIN PAGE
 // GET / - display all articles and their authors
 app.get('/', (req, res) => {
   db.article.findAll({
@@ -36,7 +40,7 @@ app.get('/', (req, res) => {
 app.use('/authors', require('./controllers/authors'))
 app.use('/articles', require('./controllers/articles'))
 
-var server = app.listen(process.env.PORT || 3000, () => {
+var server = app.listen(PORT, () => {
   rowdy.print()
 })
 
