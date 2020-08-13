@@ -4,9 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     content: DataTypes.TEXT,
     articleId: DataTypes.INTEGER
-  }, {
-    // freezeTableName: true,
-  });
+  }, {} );
   comment.associate = function(models) {
     models.comment.belongsTo(models.article);
   };

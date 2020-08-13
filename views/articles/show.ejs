@@ -6,15 +6,26 @@
 
 <p><%= article.content %></p>
 
+<h3>comments</h3>
+<% article.comments.forEach(aComment => { %>
+    <% let name = aComment.name %>
+    <% let content = aComment.content %>
+    <div>
+        name: <%= name %>
+        content: <%= content %>
+    </div>
+
+<% }) %>
+
 
 <hr/>
 
-<form action="/articles" method="post">
+<form action="/comments" method="POST">
     <label for="name">name:</label>
     <input type="text" name="name">
     <label for="content">content:</label>
     <input type="text" name="content">
-    <input hidden type="text" name="articleId" value="<%= article.id %>">
+    <input type="hidden" name="articleId" value="<%= article.id %>">
     <input type="submit">
 </form>
 
