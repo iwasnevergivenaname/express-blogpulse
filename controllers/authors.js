@@ -39,10 +39,12 @@ router.get('/new', (req, res) => {
 // GET /authors/:id - display a specific author and their posts
 // /authors/1
 router.get('/:id', (req, res) => {
+  console.log(1);
   db.author.findOne({
     include: [db.article],
     where: {id: req.params.id}
   }).then((author) => {
+    console.log(author.getFullName())
     res.render('authors/show', { author: author })
   }).catch((error) => {
     console.log(error)

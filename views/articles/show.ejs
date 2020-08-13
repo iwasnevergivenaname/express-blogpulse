@@ -1,12 +1,21 @@
 <h1><%= article.title %> <small>by <%= article.author.getFullName() %></small></h1>
 
 <p>
-  <strong><%= moment(article.createdAt).calendar() %></strong>
+    <strong><%= moment(article.createdAt).calendar() %></strong>
 </p>
 
 <p><%= article.content %></p>
 
-<hr />
 
+<hr/>
 
-<a href="/">&larr; Back Home</a>
+<form action="/articles" method="post">
+    <label for="name">name:</label>
+    <input type="text" name="name">
+    <label for="content">content:</label>
+    <input type="text" name="content">
+    <input hidden type="text" name="articleId" value="<%= article.id %>">
+    <input type="submit">
+</form>
+
+<a href="/">go home</a>
